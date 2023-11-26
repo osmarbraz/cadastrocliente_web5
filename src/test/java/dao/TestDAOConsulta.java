@@ -12,7 +12,7 @@ import dao.cliente.ClienteDAO;
 import entidade.Cliente;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class TestDAOConsulta {
+class TestDAOConsulta {
 
     Cliente cliente;
 
@@ -20,7 +20,7 @@ public class TestDAOConsulta {
      * Instância um cliente para os testes.
      */
     @BeforeAll
-    public void inicializa() {
+    void inicializa() {
         cliente = new Cliente("131", "Cliente Existente", "11111111111");
     }
 
@@ -28,7 +28,7 @@ public class TestDAOConsulta {
      * Testa um cliente existente no SQLite.
      */
     @Test
-    public void testConsulta1() {
+    void testConsulta1() {
         DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.SQLITE);
         ClienteDAO DAO = factory.getClienteDAO();
         // Insere os dados da consulta
@@ -42,7 +42,7 @@ public class TestDAOConsulta {
      * Testa um cliente existente no Hashmap.
      */
     @Test
-    public void testConsulta2() {
+    void testConsulta2() {
         DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.HASHMAP);
         ClienteDAO DAO = factory.getClienteDAO();
         // Insere os dados da consulta
@@ -56,7 +56,7 @@ public class TestDAOConsulta {
      * Testa um cliente existente no RAF.
      */
     @Test
-    public void testConsulta3() {
+    void testConsulta3() {
         DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.RAF);
         ClienteDAO DAO = factory.getClienteDAO();
         // Insere os dados da consulta
@@ -72,7 +72,7 @@ public class TestDAOConsulta {
      * @throws java.lang.Exception
      */
     @AfterAll
-    public void Finaliza() throws Exception {
+    void Finaliza() throws Exception {
         DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.SQLITE);
         ClienteDAO DAO = factory.getClienteDAO();
         // Exclui os dados inseridos

@@ -12,14 +12,14 @@ import java.util.List;
 
 import entidade.Cliente;
 
-public class TestRAFClienteDAO {
+class TestRAFClienteDAO {
 
     /**
      * Testa se o arquivo não existe.
      *
      */
     @Test
-    public void testAbrirArquivo() {
+    void testAbrirArquivo() {
         RAFClienteDAO rafclientedao = new RAFClienteDAO();
 
         assertFalse(rafclientedao.abrirArquivo("tes\\te//.txt"));
@@ -29,7 +29,7 @@ public class TestRAFClienteDAO {
      * Testa uma inclusão de cliente em arquivo inexistente no RAF.
      */
     @Test
-    public void testInclusaoRAF() {
+    void testInclusaoRAF() {
         String NOMEARQUIVO = "cliente.dat";
 
         Cliente cliente = new Cliente("-1", "Cliente Existente", "11111111111");
@@ -52,7 +52,7 @@ public class TestRAFClienteDAO {
      * Testa uma exclusão de cliente em arquivo inexistente no RAF.
      */
     @Test
-    public void testExclusaoRAF() {
+    void testExclusaoRAF() {
         String NOMEARQUIVO = "cliente.dat";
 
         Cliente cliente = new Cliente("-1", "Cliente Existente", "11111111111");
@@ -75,7 +75,7 @@ public class TestRAFClienteDAO {
      * Testa uma exclusão de registro de cliente em arquivo inexistente no RAF.
      */
     @Test
-    public void testExclusaoRegistoRAF() {
+    void testExclusaoRegistoRAF() {
         String NOMEARQUIVO = "cliente.dat";
 
         RAFRegistroCliente registro = new RAFRegistroCliente();
@@ -100,7 +100,7 @@ public class TestRAFClienteDAO {
      * Testa uma exclusão de cliente em arquivo inexistente no RAF.
      */
     @Test
-    public void testAlteracaRAF() {
+    void testAlteracaRAF() {
         String NOMEARQUIVO = "cliente.dat";
 
         Cliente cliente = new Cliente("-1", "Cliente Existente", "11111111111");
@@ -123,7 +123,7 @@ public class TestRAFClienteDAO {
      * Testa uma alteração de registro de cliente em arquivo inexistente no RAF.
      */
     @Test
-    public void testAlteracaRegistoRAF() {
+    void testAlteracaRegistoRAF() {
         String NOMEARQUIVO = "cliente.dat";
 
         Cliente cliente = new Cliente("-1", "Cliente Existente", "11111111111");
@@ -149,7 +149,7 @@ public class TestRAFClienteDAO {
      * Testa o getLista em arquivo inexistente no RAF.
      */
     @Test
-    public void testGetListaRAF() {
+    void testGetListaRAF() {
         String NOMEARQUIVO = "cliente.dat";
 
         RAFClienteDAO rafClienteDAO = new RAFClienteDAO();
@@ -176,7 +176,7 @@ public class TestRAFClienteDAO {
     @CsvSource({"131, , ",
         ", Nome, ",
         ", , 111"})
-    public void testAplicarFiltrParametrizadoRAF(String clienteId, String nome, String CPF) {
+    void testAplicarFiltrParametrizadoRAF(String clienteId, String nome, String CPF) {
         
         Cliente cliente = new Cliente(clienteId, nome, CPF);
         String NOMEARQUIVO = "cliente.dat";

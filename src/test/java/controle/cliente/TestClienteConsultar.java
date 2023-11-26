@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
 
 import entidade.Cliente;
 
-public class TestClienteConsultar {
+class TestClienteConsultar {
 
     /**
      * Teste cliente existente.
@@ -26,7 +26,7 @@ public class TestClienteConsultar {
      * @throws ServletException
      */
     @Test
-    public void testDoPost1() throws IOException, ServletException {
+    void testDoPost1() throws IOException, ServletException {
 
         //Dados da consulta        
         Cliente cliente = new Cliente("131", "Teste", "11111111111");
@@ -67,7 +67,7 @@ public class TestClienteConsultar {
      * @throws ServletException
      */
     @Test
-    public void testDoPost2() throws IOException, ServletException {
+    void testDoPost2() throws IOException, ServletException {
 
         //Dados da consulta        
         Cliente cliente = new Cliente("131", "Teste", "11111111111");

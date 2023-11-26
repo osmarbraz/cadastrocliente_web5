@@ -10,17 +10,17 @@ import entidade.Cliente;
 import dao.cliente.ClienteDAO;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class TestDAOInclusaoChavePrimaria {
+class TestDAOInclusaoChavePrimaria {
 
     Cliente cliente;
 
     @BeforeAll
-    public void inicializa() {
+    void inicializa() {
         cliente = new Cliente("123", "Teste Chave Primaria", "11111111111");
     }
 
     @Test
-    public void testIncluir1() throws Exception {
+    void testIncluir1() throws Exception {
         DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.SQLITE);
         ClienteDAO DAO = factory.getClienteDAO();
         // Insere os dados        
@@ -30,7 +30,7 @@ public class TestDAOInclusaoChavePrimaria {
     }
 
     @Test
-    public void testIncluir2() throws Exception {
+    void testIncluir2() throws Exception {
         DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.HASHMAP);
         ClienteDAO DAO = factory.getClienteDAO();
         // Insere os dados                           
@@ -40,7 +40,7 @@ public class TestDAOInclusaoChavePrimaria {
     }
 
     @Test
-    public void testIncluir3() throws Exception {
+    void testIncluir3() throws Exception {
         DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.RAF);
         ClienteDAO DAO = factory.getClienteDAO();
         // Insere os dados        
@@ -50,7 +50,7 @@ public class TestDAOInclusaoChavePrimaria {
     }
 
     @AfterAll
-    public void Finaliza() throws Exception {
+    void Finaliza() throws Exception {
         DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.SQLITE);
         ClienteDAO DAO = factory.getClienteDAO();
         // Exclui os dados inseridos

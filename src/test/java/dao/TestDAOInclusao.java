@@ -13,17 +13,17 @@ import dao.cliente.ClienteDAO;
 import entidade.Cliente;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class TestDAOInclusao {
+class TestDAOInclusao {
 
     Cliente cliente;
 
     @BeforeAll
-    public void inicializa() {
+    void inicializa() {
         cliente = new Cliente("131", "Teste", "11111111111");
     }
 
     @Test
-    public void testIncluir1() throws Exception {
+    void testIncluir1() throws Exception {
         DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.SQLITE);
         ClienteDAO DAO = factory.getClienteDAO();
         // Insere os dados        
@@ -40,7 +40,7 @@ public class TestDAOInclusao {
     }
 
     @Test
-    public void testIncluir1Null() throws Exception {
+    void testIncluir1Null() throws Exception {
         DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.SQLITE);
         ClienteDAO DAO = factory.getClienteDAO();
         // Insere os dados        
@@ -48,7 +48,7 @@ public class TestDAOInclusao {
     }
 
     @Test
-    public void testIncluir2() throws Exception {
+    void testIncluir2() throws Exception {
         DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.HASHMAP);
         ClienteDAO DAO = factory.getClienteDAO();
         // Insere os dados        
@@ -65,7 +65,7 @@ public class TestDAOInclusao {
     }
 
     @Test
-    public void testIncluir2Null() throws Exception {
+    void testIncluir2Null() throws Exception {
         DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.HASHMAP);
         ClienteDAO DAO = factory.getClienteDAO();
         // Insere os dados        
@@ -73,7 +73,7 @@ public class TestDAOInclusao {
     }
 
     @Test
-    public void testIncluir3() throws Exception {
+    void testIncluir3() throws Exception {
         DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.RAF);
         ClienteDAO DAO = factory.getClienteDAO();
         // Insere os dados        
@@ -90,7 +90,7 @@ public class TestDAOInclusao {
     }
 
     @Test
-    public void testIncluir3Null() throws Exception {
+    void testIncluir3Null() throws Exception {
         DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.RAF);
         ClienteDAO DAO = factory.getClienteDAO();
         // Insere os dados        
@@ -98,7 +98,7 @@ public class TestDAOInclusao {
     }
 
     @AfterAll
-    public void Finaliza() throws Exception {
+    void Finaliza() throws Exception {
         DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.SQLITE);
         ClienteDAO DAO = factory.getClienteDAO();
         // Exclui os dados inseridos

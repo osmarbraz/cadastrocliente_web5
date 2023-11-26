@@ -18,7 +18,7 @@ import static org.mockito.Mockito.when;
 
 import entidade.Cliente;
 
-public class TestClienteAlterar {
+class TestClienteAlterar {
     
     /**
      * Testa parametrizado do filtro para clienteid, nome e cpf em RAF inexistente.
@@ -29,7 +29,7 @@ public class TestClienteAlterar {
         "131, Teste, 11111111111, 131, CPF Inválido, 111, CPF Inv&aacute;lido!",
         "131, Teste, 11111111111, 132, Cliente Não Existente, 11111111111, Altera&ccedil;&atilde;o n&atilde;o realizada."        
     })
-     public void testAlteracaoParametrizado(String clienteId, String nome, String CPF, String clienteIdAlterado, String nomeAlterado, String CPFAlterado, String resultadoEsperado) throws IOException, ServletException {
+    void testAlteracaoParametrizado(String clienteId, String nome, String CPF, String clienteIdAlterado, String nomeAlterado, String CPFAlterado, String resultadoEsperado) throws IOException, ServletException {
                 
        // Dados da alteração        
         Cliente cliente = new Cliente(clienteId, nome, CPF);

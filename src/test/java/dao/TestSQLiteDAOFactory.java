@@ -4,13 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import org.junit.jupiter.api.Test;
 
-public class TestSQLiteDAOFactory {
+class TestSQLiteDAOFactory {
 
     /**
      * Testa se o driver não existe.
      */
     @Test
-    public void testGetConnectionDriver() {
+    void testGetConnectionDriver() {
         SQLiteDAOFactory sqlitedaofactory = new SQLiteDAOFactory();
         sqlitedaofactory.setDriverClass("X");
         sqlitedaofactory.setJdbcURL("jdbc:sqlite:cliente.db");
@@ -21,7 +21,7 @@ public class TestSQLiteDAOFactory {
      * Testa se a url não existe.
      */
     @Test
-    public void testGetConnectionURL() {
+    void testGetConnectionURL() {
         SQLiteDAOFactory sqlitedaofactory = new SQLiteDAOFactory();
         sqlitedaofactory.setDriverClass("org.sqlite.JDBC");
         sqlitedaofactory.setJdbcURL("Y");
@@ -32,7 +32,7 @@ public class TestSQLiteDAOFactory {
      * Testa se o preparaSQL não existe.
      */
     @Test
-    public void testPrepareSQL() {
+    void testPrepareSQL() {
         SQLiteDAOFactory sqlitedaofactory = new SQLiteDAOFactory();
         String prepara = sqlitedaofactory.preparaSQL(null);
         assertEquals("",prepara);

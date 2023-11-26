@@ -16,7 +16,7 @@ import static org.mockito.Mockito.when;
 
 import entidade.Cliente;
 
-public class TestClienteIncluir {
+class TestClienteIncluir {
 
     /**
      * Teste de inclusão de novo cliente.
@@ -25,7 +25,7 @@ public class TestClienteIncluir {
      * @throws ServletException
      */
     @Test
-    public void testDoPost1() throws IOException, ServletException {
+    void testDoPost1() throws IOException, ServletException {
 
         // Dados da inclusão
         Cliente cliente = new Cliente("140", "Cliente Existente", "11111111111");
@@ -66,7 +66,7 @@ public class TestClienteIncluir {
      * @throws ServletException
      */
     @Test
-    public void testDoPost2() throws IOException, ServletException {
+    void testDoPost2() throws IOException, ServletException {
 
         // Dados da inclusão
         Cliente cliente1 = new Cliente("135", "Cliente Existente", "11111111111");
@@ -111,7 +111,7 @@ public class TestClienteIncluir {
      * @throws ServletException
      */
     @Test
-    public void testDoPost3() throws IOException, ServletException {
+    void testDoPost3() throws IOException, ServletException {
 
         // Dados da inclusão
         Cliente cliente = new Cliente("137", "Cliente Existente", "111");

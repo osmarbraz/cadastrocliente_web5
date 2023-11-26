@@ -16,7 +16,7 @@ import static org.mockito.Mockito.when;
 
 import entidade.Cliente;
 
-public class TestClienteExcluir {
+class TestClienteExcluir {
 
     /**
      * Teste exclusão cliente existente.
@@ -25,7 +25,7 @@ public class TestClienteExcluir {
      * @throws ServletException
      */
     @Test
-    public void testDoPost1() throws IOException, ServletException {
+    void testDoPost1() throws IOException, ServletException {
 
         //Insere os dados da exclusão        
         Cliente cliente = new Cliente("131", "Teste", "11111111111");
@@ -62,7 +62,7 @@ public class TestClienteExcluir {
      * @throws ServletException
      */
     @Test
-    public void testDoPost2() throws IOException, ServletException {
+    void testDoPost2() throws IOException, ServletException {
 
         //Insere os dados da exclusão        
         Cliente cliente = new Cliente("131", "Teste", "11111111111");

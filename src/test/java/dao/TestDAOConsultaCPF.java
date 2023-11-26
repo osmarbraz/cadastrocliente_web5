@@ -12,7 +12,6 @@ import java.util.List;
 
 import dao.cliente.ClienteDAO;
 import entidade.Cliente;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class TestDAOConsultaCPF {

@@ -21,14 +21,8 @@ import entidade.Cliente;
 public class TestClienteAlterar {
     
     /**
-     * Testa párametrizado do filtro para clienteid, nome e cpf em RAF inexistente.
+     * Testa parametrizado do filtro para clienteid, nome e cpf em RAF inexistente.
      */
-//    @Test
-//    @Parameters({
-//        "131, Teste, 11111111111, 131, Cliente Existente, 11111111111, Altera&ccedil;&atilde;o realizada com sucesso.",
-//        "131, Teste, 11111111111, 131, CPF Inválido, 111, CPF Inv&aacute;lido!",
-//        "131, Teste, 11111111111, 132, Cliente Não Existente, 11111111111, Altera&ccedil;&atilde;o n&atilde;o realizada."        
-//    })
     @ParameterizedTest
     @CsvSource({
         "131, Teste, 11111111111, 131, Cliente Existente, 11111111111, Altera&ccedil;&atilde;o realizada com sucesso.",

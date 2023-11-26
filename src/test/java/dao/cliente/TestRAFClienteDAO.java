@@ -177,7 +177,7 @@ public class TestRAFClienteDAO {
         ", Nome, ",
         ", , 111"})
     public void testAplicarFiltrParametrizadoRAF(String clienteId, String nome, String CPF) {
-        System.out.println("RAF:" + clienteId + nome +  CPF);
+        
         Cliente cliente = new Cliente(clienteId, nome, CPF);
         String NOMEARQUIVO = "cliente.dat";
 

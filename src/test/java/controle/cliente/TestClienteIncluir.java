@@ -19,7 +19,7 @@ import entidade.Cliente;
 public class TestClienteIncluir {
 
     /**
-     * Teste de incluão de novo cliente.
+     * Teste de inclusão de novo cliente.
      *
      * @throws IOException
      * @throws ServletException
@@ -60,7 +60,7 @@ public class TestClienteIncluir {
     }
 
     /**
-     * Teste de incluão de cliente existente.
+     * Teste de inclusão de cliente existente.
      *
      * @throws IOException
      * @throws ServletException
@@ -105,7 +105,7 @@ public class TestClienteIncluir {
     }
 
     /**
-     * Teste de incluão de novo cliente com cpf inválido.
+     * Teste de inclusão de novo cliente com cpf inválido.
      *
      * @throws IOException
      * @throws ServletException

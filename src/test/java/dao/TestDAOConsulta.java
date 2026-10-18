@@ -5,11 +5,27 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.AfterAll;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import org.junit.jupiter.api.TestInstance;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.spy;
+
+import java.io.IOException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import java.util.List;
 
+import controle.cliente.ClienteConsultar;
 import dao.cliente.ClienteDAO;
+import dao.cliente.SQLiteClienteDAO;
 import entidade.Cliente;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class TestDAOConsulta {
@@ -64,6 +80,43 @@ class TestDAOConsulta {
         //Consulta
         List lista = DAO.getLista();
         assertNotEquals(0, lista.size());
+    }
+
+    @Test
+    void consultarCatchIOException() throws Exception {
+
+        // Variáveis
+        ClienteConsultar servlet = new ClienteConsultar();
+
+        HttpServletRequest request = mock(HttpServletRequest.class);
+        HttpServletResponse response = mock(HttpServletResponse.class);
+
+        // Entrada: simula um erro ao obter o PrintWriter.
+        when(response.getWriter()).thenThrow(new IOException("Erro simulado"));
+
+        // Processamento: executa o servlet.
+        // A IOException deve ser capturada pelo catch.
+        servlet.doPost(request, response);
+
+        // Saída: verifica se o método foi chamado.
+        verify(response).getWriter();
+    }
+
+    @Test
+    void tratarSQLExceptionNoSelectSQLiteClienteDAO() throws Exception {
+        // Variáveis
+        SQLiteClienteDAO dao = spy(new SQLiteClienteDAO());
+        Connection conexao = mock(Connection.class);
+
+        // Entrada
+        doReturn(conexao).when(dao).getConnection();
+        doThrow(new SQLException("Erro simulado")).when(conexao).createStatement();
+
+        // Processamento
+        List<Cliente> resultado = dao.getLista();
+
+        // Saída
+        assertTrue(resultado.isEmpty());
     }
 
     /**

@@ -1,8 +1,23 @@
 package dao;
 
+import dao.cliente.SQLiteClienteDAO;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
+
+import org.mockito.MockedStatic;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.mockStatic;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 class TestSQLiteDAOFactory {
 
@@ -35,6 +50,27 @@ class TestSQLiteDAOFactory {
     void testPrepareSQL() {
         SQLiteDAOFactory sqlitedaofactory = new SQLiteDAOFactory();
         String prepara = sqlitedaofactory.preparaSQL(null);
-        assertEquals("",prepara);
+        assertEquals("", prepara);
+    }
+
+    @Test
+    void criarSQLExceptionSQLiteClienteDAO() throws Exception {
+        // Variáveis
+        Connection conexao = mock(Connection.class);
+        Statement statement = mock(Statement.class);
+
+        // Entrada
+        try ( MockedStatic<DriverManager> driverManager  = mockStatic(DriverManager.class)) {
+            driverManager.when(()-> DriverManager.getConnection(anyString())) .thenReturn(conexao);
+            when(conexao.createStatement()).thenReturn(statement);
+            doThrow(new SQLException("Erro simulado")).when(statement).execute(anyString());
+
+            // Processamento
+            SQLiteClienteDAO dao = new SQLiteClienteDAO();
+
+            // Saída
+            assertNotNull(dao);
+            verify(statement).execute(anyString());
+        }
     }
 }

@@ -11,7 +11,7 @@ jobs:
   # Jobs do ambiente de desenvolvimento
   build-dev:
     # Runner com uma instância do ubuntu        
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     environment: 
       name: dev
     steps:
@@ -32,7 +32,7 @@ jobs:
   # Jobs do ambiente de homologação
   build-hmg:
     # Runner com uma instância do ubuntu        
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     environment: 
       name: hmg
     needs: build-dev
@@ -75,7 +75,7 @@ jobs:
   # Jobs do ambiente de produção
   build-prd:
     # Runner com uma instância do ubuntu        
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     environment: 
       name: prd
     needs: build-hmg

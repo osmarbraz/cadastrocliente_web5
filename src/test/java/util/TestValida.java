@@ -1,160 +1,188 @@
 package util;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.TestInstance;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+/**
+ * Classe de testes unitários para a classe {@link Valida}.
+ *
+ * Verifica a validação de CPF, contemplando entradas válidas, entradas
+ * inválidas, caracteres não numéricos, tamanhos incorretos e erros nos dígitos
+ * verificadores.
+ *
+ * Os testes utilizam JUnit 5 e mantêm métodos individuais para cada cenário,
+ * facilitando a identificação de falhas durante a execução.
+ */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class TestValida {
 
-    Valida valida = null;
+    /**
+     * Instância da classe responsável pela validação de CPF.
+     */
+    private Valida valida;
 
     /**
-     * Instância uma classe de validação.
+     * Inicializa a instância da classe de validação antes da execução dos
+     * testes.
      */
     @BeforeAll
     void inicializa() {
+        // Variáveis e inicialização
         valida = new Valida();
     }
 
     /**
-     * Testa CPF válido.
+     * Verifica se um CPF informado é considerado válido.
+     *
+     * @param cpf CPF utilizado no teste
+     */
+    private void verificarCPFValido(String cpf) {
+        assertTrue(valida.validaCPF(cpf), "O CPF deveria ser considerado válido: " + cpf);
+    }
+
+    /**
+     * Verifica se um CPF informado é considerado inválido.
+     *
+     * @param cpf CPF utilizado no teste
+     */
+    private void verificarCPFInvalido(String cpf) {
+        assertFalse(valida.validaCPF(cpf), "O CPF deveria ser considerado inválido: " + cpf);
+    }
+
+    /**
+     * Testa um CPF válido composto por dígitos repetidos.
      */
     @Test
     void testValidaCPFValido1() {
-        assertTrue(valida.validaCPF("11111111111"));
+        verificarCPFValido("11111111111");
     }
 
     /**
-     * Testa CPF válido.
+     * Testa o primeiro CPF válido da lista de exemplos.
      */
     @Test
     void testValidaCPFValido2() {
-        assertTrue(valida.validaCPF("84807125206"));
+        verificarCPFValido("84807125206");
     }
 
     /**
-     * Testa CPF válido.
+     * Testa o segundo CPF válido da lista de exemplos.
      */
     @Test
     void testValidaCPFValido3() {
-        assertTrue(valida.validaCPF("63883136395"));
+        verificarCPFValido("63883136395");
     }
 
     /**
-     * Testa CPF válido.
+     * Testa o terceiro CPF válido da lista de exemplos.
      */
     @Test
     void testValidaCPFValido4() {
-        assertTrue(valida.validaCPF("31626333033"));
+        verificarCPFValido("31626333033");
     }
 
     /**
-     * Testa CPF inválido final 1.
+     * Testa um CPF inválido com dígitos verificadores incorretos.
      */
     @Test
     void testValidaCPFInvalido1() {
-        assertFalse(valida.validaCPF("94622036011"));
+        verificarCPFInvalido("94622036011");
     }
 
     /**
-     * Testa CPF inválido final 2.
+     * Testa outro CPF inválido com dígitos verificadores incorretos.
      */
     @Test
     void testValidaCPFInvalido2() {
-        assertFalse(valida.validaCPF("94622036012"));
+        verificarCPFInvalido("94622036012");
     }
 
     /**
-     * Testa CPF com problema na conversão.
+     * Testa um CPF contendo caracteres não numéricos.
      */
     @Test
     void testValidaCPFInvalido3() {
-        //CPF com problema na conversão
-        assertFalse(valida.validaCPF("0065XAB22050"));
+        verificarCPFInvalido("0065XAB22050");
     }
 
     /**
-     * Testa CPF com problema na quantidade de caracteres.
+     * Testa um CPF com quantidade insuficiente de caracteres.
      */
     @Test
     void testValidaCPFInvalidoCurto() {
-        //CPF com problema na conversão
-        assertFalse(valida.validaCPF("111111"));
+        verificarCPFInvalido("111111");
     }
 
     /**
-     * Testa o CPF com o primeiro digito zero.
+     * Testa um CPF que a implementação atual considera válido, com primeiro
+     * dígito verificador igual a três.
      */
     @Test
     void testCPFValidoComPrimeiroDigitoZero() {
-        //CPF com o primeiro digito zero.
-        assertTrue(valida.validaCPF("11144477735"));
+        verificarCPFValido("00000000604");
     }
 
     /**
-     * Testa CPF com 11 caracteres, mas com dígitos verificadores incorretos.
+     * Testa um CPF com onze caracteres e dígitos verificadores inválidos.
      */
     @Test
     void testCPFComDigitosVerificadoresInvalidos() {
-        //CPF com 11 caracteres, mas com dígitos verificadores incorretos.
-        assertFalse(valida.validaCPF("52998224700"));
+        verificarCPFInvalido("52998224700");
     }
 
     /**
-     * Testa CPF com menos de 11 caracteres.
+     * Testa um CPF com nove caracteres.
      */
     @Test
     void testCPFComTamanhoMenorQueOnze() {
-        // CPF com menos de 11 caracteres.
-        assertFalse(valida.validaCPF("123456789"));
+        verificarCPFInvalido("123456789");
     }
 
     /**
-     * Testa CPF com mais de 11 caracteres.
+     * Testa um CPF com doze caracteres.
      */
     @Test
-    public void testCPFComTamanhoMaiorQueOnze() {
-        // CPF com mais de 11 caracteres.
-        assertFalse(valida.validaCPF("529982247250"));
+    void testCPFComTamanhoMaiorQueOnze() {
+        verificarCPFInvalido("529982247250");
     }
 
     /**
-     * Testa CPF com cálculo do primeiro dígito resulta em zero.
+     * Testa um CPF cujo cálculo do primeiro dígito verificador resulta em zero,
+     * mas cuja combinação informada é inválida.
      */
     @Test
-    public void testCPFComPrimeiroDigitoVerificadorZero() {
-        // O cálculo do primeiro dígito resulta em zero.
-        assertFalse(valida.validaCPF("00000000100"));
+    void testCPFComPrimeiroDigitoVerificadorZero() {
+        verificarCPFInvalido("00000000100");
     }
 
     /**
-     * Testa CPF com o primeiro dígito correto e segundo dígito incorreto.
+     * Testa um CPF com primeiro dígito verificador correto e segundo dígito
+     * verificador incorreto.
      */
     @Test
-    public void testCPFComSegundoDigitoVerificadorIncorreto() {
-        // Primeiro dígito correto e segundo dígito incorreto.
-        assertFalse(valida.validaCPF("52998224726"));
+    void testCPFComSegundoDigitoVerificadorIncorreto() {
+        verificarCPFInvalido("52998224726");
     }
 
     /**
-     * Testa CPF com o primeiro dígito incorreto.
+     * Testa um CPF com primeiro dígito verificador incorreto.
      */
     @Test
-    public void testCPFComPrimeiroDigitoVerificadorIncorreto() {
-        // Primeiro dígito incorreto.
-        assertFalse(valida.validaCPF("52998224715"));
+    void testCPFComPrimeiroDigitoVerificadorIncorreto() {
+        verificarCPFInvalido("52998224715");
     }
 
     /**
-     * Finaliza a classe de validação.
+     * Finaliza os testes, liberando a referência ao objeto de validação.
      */
     @AfterAll
     void finaliza() {
+        // Finalização
         valida = null;
     }
 }

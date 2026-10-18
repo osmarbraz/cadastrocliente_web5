@@ -1,29 +1,35 @@
 package dao;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.TestInstance;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.io.IOException;
 import java.util.List;
-import java.util.logging.Handler;
-import java.util.logging.LogRecord;
-import java.util.logging.Logger;
-import java.util.logging.Level;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import controle.cliente.ClienteIncluir;
 import dao.cliente.ClienteDAO;
+import dao.cliente.SQLiteClienteDAO;
 import entidade.Cliente;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -129,6 +135,59 @@ class TestDAOInclusao {
 
         // Saída: verifica se o método foi chamado.
         verify(response).getWriter();
+    }
+
+    @Test
+    public void testInserirComSucessoSQLiteClienteDAO() throws SQLException {
+        SQLiteClienteDAO dao = spy(new SQLiteClienteDAO());
+        Connection conexao = mock(Connection.class);
+        Statement statement = mock(Statement.class);
+
+        doReturn(conexao).when(dao).getConnection();
+        when(conexao.createStatement()).thenReturn(statement);
+        when(statement.executeUpdate(anyString())).thenReturn(1);
+
+        assertTrue(dao.inserir(cliente));
+        verify(statement).executeUpdate(anyString());
+    }
+
+    @Test
+    public void testInserirQuandoExecuteUpdateRetornaZeroSQLiteClienteDAO() throws SQLException {
+        // Variáveis
+        SQLiteClienteDAO dao = spy(new SQLiteClienteDAO());
+        Connection conexao = mock(Connection.class);
+        Statement statement = mock(Statement.class);
+        // Entrada
+        doReturn(conexao).when(dao).getConnection();
+        when(conexao.createStatement()).thenReturn(statement);
+        when(statement.executeUpdate(anyString())).thenReturn(0);
+        // Saída
+        assertFalse(dao.inserir(cliente));
+        verify(statement).executeUpdate(anyString());
+    }
+
+    @Test
+    public void testInserirComObjetoNuloSQLiteClienteDAO() {
+        SQLiteClienteDAO dao = spy(new SQLiteClienteDAO());
+        assertFalse(dao.inserir(null));
+    }
+
+    @Test
+    public void testInserirComErroSQL() throws SQLException {
+        // Variáveis
+        SQLiteClienteDAO dao = spy(new SQLiteClienteDAO());
+        Connection conexao = mock(Connection.class);
+        Statement statement = mock(Statement.class);
+        boolean resultado;
+        // Entrada
+        doReturn(conexao).when(dao).getConnection();
+        when(conexao.createStatement()).thenReturn(statement);
+        doThrow(new SQLException("Erro simulado")).when(statement).executeUpdate(anyString());
+        // Processamento
+        resultado = dao.inserir(cliente);
+        // Saída
+        assertFalse(resultado);
+        verify(statement).executeUpdate(anyString());
     }
 
     @AfterAll

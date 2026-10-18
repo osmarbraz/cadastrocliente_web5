@@ -43,7 +43,7 @@ Aplicação **Cadastro de Clientes** desenvolvida em **Java**, empacotada como u
  - A aplicação é empacotada no formato **WAR (Web Application Archive)**.
  - Utiliza o **Docker** para criar uma imagem e executar a aplicação em um container.
  - A pasta test contêm os testes unitários do projeto utilizando **JUnit 5**.
- - Os testes são realizados no ambiente dev utilizando SO ubuntu-lastest e JDK 16, 17 e 18.
+ - Os testes são realizados no ambiente dev utilizando SO ubuntu-24.04 e JDK 16, 17 e 18.
  - A cobertura do código é realizada através do **JaCoCo** e relatório enviado para o Sonarcloud.
  - Distribuição para **Docker Hub**.
 

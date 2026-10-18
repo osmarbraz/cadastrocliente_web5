@@ -106,9 +106,7 @@ class TestDAOAlteracao {
             assertTrue(dao.inserir(cliente),"A inserção do cliente deveria ser bem-sucedida.");
 
             // Processamento: localiza o cliente pelo identificador
-            List<Cliente> lista = dao.aplicarFiltro(
-                criarFiltroPorId(cliente.getClienteId())
-            );
+            List<Cliente> lista = dao.aplicarFiltro(criarFiltroPorId(cliente.getClienteId()));
 
             assertFalse(lista.isEmpty(),"O cliente deveria existir antes da alteração." );
 
@@ -116,12 +114,10 @@ class TestDAOAlteracao {
             clienteRecuperado.setNome(nomeAlteracao);
 
             // Processamento: altera o nome
-            assertEquals(1,dao.alterar(clienteRecuperado), "A alteração deveria afetar um registro.");
+            assertEquals(1,dao.alterar(clienteRecuperado),"A alteração deveria afetar um registro.");
 
             // Saída: consulta novamente e verifica o nome
-            List<Cliente> listaAtualizada = dao.aplicarFiltro(
-                criarFiltroPorId(cliente.getClienteId())
-            );
+            List<Cliente> listaAtualizada = dao.aplicarFiltro(criarFiltroPorId(cliente.getClienteId()));
 
             assertFalse(listaAtualizada.isEmpty(),"O cliente deveria continuar cadastrado após a alteração.");
 

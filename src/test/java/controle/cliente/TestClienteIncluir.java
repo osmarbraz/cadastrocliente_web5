@@ -27,7 +27,7 @@ class TestClienteIncluir {
      * @throws ServletException
      */
     @Test
-    void testDoPost1() throws IOException, ServletException {
+    void testDoPost1() throws IOException {
 
         // Dados da inclusão
         Cliente cliente = new Cliente("140", "Cliente Existente", "11111111111");
@@ -68,7 +68,7 @@ class TestClienteIncluir {
      * @throws ServletException
      */
     @Test
-    void testDoPost2() throws IOException, ServletException {
+    void testDoPost2() throws IOException {
 
         // Dados da inclusão
         Cliente cliente1 = new Cliente("135", "Cliente Existente", "11111111111");
@@ -113,7 +113,7 @@ class TestClienteIncluir {
      * @throws ServletException
      */
     @Test
-    void testDoPost3() throws IOException, ServletException {
+    void testDoPost3() throws IOException {
 
         // Dados da inclusão
         Cliente cliente = new Cliente("137", "Cliente Existente", "111");

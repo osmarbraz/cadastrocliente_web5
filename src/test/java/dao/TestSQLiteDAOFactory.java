@@ -54,7 +54,7 @@ class TestSQLiteDAOFactory {
     }
 
     @Test
-    void criarSQLExceptionSQLiteClienteDAO() throws Exception {
+    void criarSQLExceptionSQLiteClienteDAO() throws SQLException {
         // Variáveis
         Connection conexao = mock(Connection.class);
         Statement statement = mock(Statement.class);

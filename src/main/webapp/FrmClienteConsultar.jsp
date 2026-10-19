@@ -6,9 +6,9 @@
     <body>
         <h1>Cadastro de Cliente - Consultar</h1>
         <form name="FrmCliente" method="post" action="servlet/ClienteConsultar">
-            ClienteId : <input type=text name="ClienteId"> <br><br>
-            <input type="reset" value="Limpar">
-            <input type="submit" name="Consultar" value="Consultar"><br>
+            ClienteId : <input type=text id="ClienteId" name="ClienteId"> <br><br>
+            <input type="reset" id="Limpar" value="Limpar">
+            <input type="submit" id="Consultar" name="Consultar" value="Consultar"><br>
         </form>
         <br>
         <a href="<%=request.getContextPath()%>/menu.jsp"> Menu </a>

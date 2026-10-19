@@ -25,7 +25,7 @@ class TestClienteExcluir {
      * @throws ServletException
      */
     @Test
-    void testDoPost1() throws IOException, ServletException {
+    void testDoPost1() throws IOException {
 
         //Insere os dados da exclusão        
         Cliente cliente = new Cliente("131", "Teste", "11111111111");
@@ -62,7 +62,7 @@ class TestClienteExcluir {
      * @throws ServletException
      */
     @Test
-    void testDoPost2() throws IOException, ServletException {
+    void testDoPost2() throws IOException {
 
         //Insere os dados da exclusão        
         Cliente cliente = new Cliente("131", "Teste", "11111111111");

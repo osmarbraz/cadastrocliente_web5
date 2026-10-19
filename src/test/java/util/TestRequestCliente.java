@@ -22,7 +22,7 @@ public class TestRequestCliente {
      * Testa a recuperação dos dados do cliente.
      */
     @Test
-    public void testRecuperaCliente() {
+    void testRecuperaCliente() {
         // Variáveis
         HttpServletRequest request = mock(HttpServletRequest.class);
         Cliente cliente;
@@ -45,7 +45,7 @@ public class TestRequestCliente {
      * Testa a recuperação dos dados do cliente com caracteres HTML.
      */
     @Test
-    public void testRecuperaClienteComCaracteresHTML() {
+    void testRecuperaClienteComCaracteresHTML() {
         // Variáveis
         HttpServletRequest request = mock(HttpServletRequest.class);
         Cliente cliente;
@@ -68,7 +68,7 @@ public class TestRequestCliente {
      * Testa a recuperação dos dados do cliente com valores nulos.
      */
     @Test
-    public void testRecuperaClienteComParametrosNulos() {
+    void testRecuperaClienteComParametrosNulos() {
 
         // Variáveis
         HttpServletRequest request = mock(HttpServletRequest.class);

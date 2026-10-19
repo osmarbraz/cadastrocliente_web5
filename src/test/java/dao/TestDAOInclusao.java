@@ -43,13 +43,13 @@ class TestDAOInclusao {
     }
 
     @Test
-    void testIncluir1() throws Exception {
+    void testIncluir1() {
         DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.SQLITE);
-        ClienteDAO DAO = factory.getClienteDAO();
+        ClienteDAO dao = factory.getClienteDAO();
         // Insere os dados        
-        DAO.inserir(cliente);
+        dao.inserir(cliente);
         //Consulta
-        List lista = DAO.aplicarFiltro(cliente);
+        List lista = dao.aplicarFiltro(cliente);
         //Verifica os dados    
         if (!lista.isEmpty()) {
             Cliente oCliente = (Cliente) lista.iterator().next();
@@ -60,21 +60,21 @@ class TestDAOInclusao {
     }
 
     @Test
-    void testIncluir1Null() throws Exception {
+    void testIncluir1Null() {
         DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.SQLITE);
-        ClienteDAO DAO = factory.getClienteDAO();
+        ClienteDAO dao = factory.getClienteDAO();
         // Insere os dados        
-        assertFalse(DAO.inserir(null));
+        assertFalse(dao.inserir(null));
     }
 
     @Test
-    void testIncluir2() throws Exception {
+    void testIncluir2() {
         DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.HASHMAP);
-        ClienteDAO DAO = factory.getClienteDAO();
+        ClienteDAO dao = factory.getClienteDAO();
         // Insere os dados        
-        DAO.inserir(cliente);
+        dao.inserir(cliente);
         //Consulta
-        List lista = DAO.aplicarFiltro(cliente);
+        List lista = dao.aplicarFiltro(cliente);
         //Verifica os dados    
         if (!lista.isEmpty()) {
             Cliente oCliente = (Cliente) lista.iterator().next();
@@ -85,21 +85,21 @@ class TestDAOInclusao {
     }
 
     @Test
-    void testIncluir2Null() throws Exception {
+    void testIncluir2Null() {
         DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.HASHMAP);
-        ClienteDAO DAO = factory.getClienteDAO();
+        ClienteDAO dao = factory.getClienteDAO();
         // Insere os dados        
-        assertFalse(DAO.inserir(null));
+        assertFalse(dao.inserir(null));
     }
 
     @Test
-    void testIncluir3() throws Exception {
+    void testIncluir3() {
         DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.RAF);
-        ClienteDAO DAO = factory.getClienteDAO();
+        ClienteDAO dao = factory.getClienteDAO();
         // Insere os dados        
-        DAO.inserir(cliente);
+        dao.inserir(cliente);
         //Consulta
-        List lista = DAO.aplicarFiltro(cliente);
+        List lista = dao.aplicarFiltro(cliente);
         //Verifica os dados    
         if (!lista.isEmpty()) {
             Cliente oCliente = (Cliente) lista.iterator().next();
@@ -110,15 +110,15 @@ class TestDAOInclusao {
     }
 
     @Test
-    void testIncluir3Null() throws Exception {
+    void testIncluir3Null() {
         DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.RAF);
-        ClienteDAO DAO = factory.getClienteDAO();
+        ClienteDAO dao = factory.getClienteDAO();
         // Insere os dados        
-        assertFalse(DAO.inserir(null));
+        assertFalse(dao.inserir(null));
     }
 
     @Test
-    void incluirIOException() throws Exception {
+    void incluirIOException() throws IOException {
 
         // Variáveis
         ClienteIncluir servlet = new ClienteIncluir();
@@ -138,7 +138,7 @@ class TestDAOInclusao {
     }
 
     @Test
-    public void testInserirComSucessoSQLiteClienteDAO() throws SQLException {
+    public void testInserirComSucessoSQLiteClienteDAO() throws SQLException{
         SQLiteClienteDAO dao = spy(new SQLiteClienteDAO());
         Connection conexao = mock(Connection.class);
         Statement statement = mock(Statement.class);
@@ -152,7 +152,7 @@ class TestDAOInclusao {
     }
 
     @Test
-    public void testInserirQuandoExecuteUpdateRetornaZeroSQLiteClienteDAO() throws SQLException {
+    public void testInserirQuandoExecuteUpdateRetornaZeroSQLiteClienteDAO() throws SQLException{
         // Variáveis
         SQLiteClienteDAO dao = spy(new SQLiteClienteDAO());
         Connection conexao = mock(Connection.class);
@@ -191,21 +191,21 @@ class TestDAOInclusao {
     }
 
     @AfterAll
-    void Finaliza() throws Exception {
+    void finaliza() {
         DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.SQLITE);
-        ClienteDAO DAO = factory.getClienteDAO();
+        ClienteDAO dao = factory.getClienteDAO();
         // Exclui os dados inseridos
-        DAO.excluir(cliente);
+        dao.excluir(cliente);
 
         factory = DAOFactory.getDAOFactory(DAOFactory.HASHMAP);
-        DAO = factory.getClienteDAO();
+        dao = factory.getClienteDAO();
         // Exclui os dados inseridos
-        DAO.excluir(cliente);
+        dao.excluir(cliente);
 
         factory = DAOFactory.getDAOFactory(DAOFactory.RAF);
-        DAO = factory.getClienteDAO();
+        dao = factory.getClienteDAO();
         // Exclui os dados inseridos
-        DAO.excluir(cliente);
+        dao.excluir(cliente);
 
         cliente = null;
     }

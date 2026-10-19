@@ -28,13 +28,13 @@ class TestDAOConsultaCPF {
     @Test
     void testConsulta1() {
         DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.SQLITE);
-        ClienteDAO DAO = factory.getClienteDAO();
+        ClienteDAO dao = factory.getClienteDAO();
         Cliente consulta = new Cliente();
         consulta.setCpf(cliente.getCpf());
         // Insere os dados da consulta
-        DAO.inserir(cliente);
+        dao.inserir(cliente);
         //Consulta
-        List lista = DAO.aplicarFiltro(consulta);
+        List lista = dao.aplicarFiltro(consulta);
 
         //Verifica os dados    
         if (!lista.isEmpty()) {
@@ -48,11 +48,11 @@ class TestDAOConsultaCPF {
     @Test
     void testConsulta1Inexistente() {
         DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.SQLITE);
-        ClienteDAO DAO = factory.getClienteDAO();
+        ClienteDAO dao = factory.getClienteDAO();
         Cliente consulta = new Cliente();
         consulta.setCpf(clienteNaoExistente.getCpf());
         //Consulta
-        List lista = DAO.aplicarFiltro(consulta);
+        List lista = dao.aplicarFiltro(consulta);
         //Verifica os dados 
          if (lista.isEmpty()) {
             assertTrue(true);
@@ -62,9 +62,9 @@ class TestDAOConsultaCPF {
     @Test
     void testConsulta1Null() {
         DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.SQLITE);
-        ClienteDAO DAO = factory.getClienteDAO();
+        ClienteDAO dao = factory.getClienteDAO();
         //Consulta
-        List lista = DAO.aplicarFiltro(null);
+        List lista = dao.aplicarFiltro(null);
 
         assertTrue(lista.isEmpty());
     }
@@ -72,13 +72,13 @@ class TestDAOConsultaCPF {
     @Test
     void testConsulta2() {
         DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.HASHMAP);
-        ClienteDAO DAO = factory.getClienteDAO();
+        ClienteDAO dao = factory.getClienteDAO();
         Cliente consulta = new Cliente();
         consulta.setCpf(cliente.getCpf());
         // Insere os dados da consulta
-        DAO.inserir(cliente);
+        dao.inserir(cliente);
         //Consulta
-        List lista = DAO.aplicarFiltro(consulta);
+        List lista = dao.aplicarFiltro(consulta);
 
         //Verifica os dados    
         if (!lista.isEmpty()) {
@@ -92,11 +92,11 @@ class TestDAOConsultaCPF {
     @Test
     void testConsulta2Inexistente() {
         DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.HASHMAP);
-        ClienteDAO DAO = factory.getClienteDAO();
+        ClienteDAO dao = factory.getClienteDAO();
         Cliente consulta = new Cliente();
         consulta.setCpf(clienteNaoExistente.getCpf());
         //Consulta
-        List lista = DAO.aplicarFiltro(consulta);
+        List lista = dao.aplicarFiltro(consulta);
         //Verifica os dados    
         assertTrue(lista.isEmpty());
     }
@@ -104,9 +104,9 @@ class TestDAOConsultaCPF {
     @Test
     void testConsulta2Null() {
         DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.HASHMAP);
-        ClienteDAO DAO = factory.getClienteDAO();
+        ClienteDAO dao = factory.getClienteDAO();
         //Consulta
-        List lista = DAO.aplicarFiltro(null);
+        List lista = dao.aplicarFiltro(null);
 
         assertTrue(lista.isEmpty());
     }
@@ -114,13 +114,13 @@ class TestDAOConsultaCPF {
     @Test
     void testConsulta3() {
         DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.RAF);
-        ClienteDAO DAO = factory.getClienteDAO();
+        ClienteDAO dao = factory.getClienteDAO();
         Cliente consulta = new Cliente();
         consulta.setCpf(cliente.getCpf());
         // Insere os dados da consulta
-        DAO.inserir(cliente);
+        dao.inserir(cliente);
         //Consulta
-        List lista = DAO.aplicarFiltro(consulta);
+        List lista = dao.aplicarFiltro(consulta);
 
         //Verifica os dados    
         if (!lista.isEmpty()) {
@@ -134,11 +134,11 @@ class TestDAOConsultaCPF {
     @Test
     void testConsulta3Inexistente() {
         DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.RAF);
-        ClienteDAO DAO = factory.getClienteDAO();
+        ClienteDAO dao = factory.getClienteDAO();
         Cliente consulta = new Cliente();
         consulta.setCpf(clienteNaoExistente.getCpf());
         //Consulta
-        List lista = DAO.aplicarFiltro(consulta);
+        List lista = dao.aplicarFiltro(consulta);
         //Verifica os dados    
         assertTrue(lista.isEmpty());
     }
@@ -146,29 +146,29 @@ class TestDAOConsultaCPF {
     @Test
     void testConsulta3Null() {
         DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.RAF);
-        ClienteDAO DAO = factory.getClienteDAO();
+        ClienteDAO dao = factory.getClienteDAO();
         //Consulta
-        List lista = DAO.aplicarFiltro(null);
+        List lista = dao.aplicarFiltro(null);
 
         assertTrue(lista.isEmpty());
     }
 
     @AfterAll
-    void Finaliza() throws Exception {
+    void finaliza() {
         DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.SQLITE);
-        ClienteDAO DAO = factory.getClienteDAO();
+        ClienteDAO dao = factory.getClienteDAO();
         // Exclui os dados inseridos
-        DAO.excluir(cliente);
+        dao.excluir(cliente);
 
         factory = DAOFactory.getDAOFactory(DAOFactory.HASHMAP);
-        DAO = factory.getClienteDAO();
+        dao = factory.getClienteDAO();
         // Exclui os dados inseridos
-        DAO.excluir(cliente);
+        dao.excluir(cliente);
 
         factory = DAOFactory.getDAOFactory(DAOFactory.RAF);
-        DAO = factory.getClienteDAO();
+        dao = factory.getClienteDAO();
         // Exclui os dados inseridos
-        DAO.excluir(cliente);
+        dao.excluir(cliente);
 
         cliente = null;
     }

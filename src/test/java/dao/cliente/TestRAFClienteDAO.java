@@ -21,7 +21,6 @@ class TestRAFClienteDAO {
     @Test
     void testAbrirArquivo() {
         RAFClienteDAO rafclientedao = new RAFClienteDAO();
-
         assertFalse(rafclientedao.abrirArquivo("tes\\te//.txt"));
     }
 

@@ -25,13 +25,13 @@ class TestDAOConsultaNome {
     @Test
     void testConsulta1() {
         DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.SQLITE);
-        ClienteDAO DAO = factory.getClienteDAO();
+        ClienteDAO dao = factory.getClienteDAO();
         Cliente consulta = new Cliente();
         consulta.setNome(cliente.getNome());
         // Insere os dados da consulta
-        DAO.inserir(cliente);
+        dao.inserir(cliente);
         //Consulta
-        List lista = DAO.aplicarFiltro(consulta);
+        List lista = dao.aplicarFiltro(consulta);
 
         //Verifica os dados    
         if (!lista.isEmpty()) {
@@ -45,13 +45,13 @@ class TestDAOConsultaNome {
     @Test
     void testConsulta2() {
         DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.HASHMAP);
-        ClienteDAO DAO = factory.getClienteDAO();
+        ClienteDAO dao = factory.getClienteDAO();
         Cliente consulta = new Cliente();
         consulta.setNome(cliente.getNome());
         // Insere os dados da consulta
-        DAO.inserir(cliente);
+        dao.inserir(cliente);
         //Consulta
-        List lista = DAO.aplicarFiltro(consulta);
+        List lista = dao.aplicarFiltro(consulta);
 
         //Verifica os dados    
         if (!lista.isEmpty()) {
@@ -65,13 +65,13 @@ class TestDAOConsultaNome {
     @Test
     void testConsulta3() {
         DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.RAF);
-        ClienteDAO DAO = factory.getClienteDAO();
+        ClienteDAO dao = factory.getClienteDAO();
         Cliente consulta = new Cliente();
         consulta.setNome(cliente.getNome());
         // Insere os dados da consulta
-        DAO.inserir(cliente);
+        dao.inserir(cliente);
         //Consulta
-        List lista = DAO.aplicarFiltro(consulta);
+        List lista = dao.aplicarFiltro(consulta);
 
         //Verifica os dados    
         if (!lista.isEmpty()) {
@@ -83,21 +83,21 @@ class TestDAOConsultaNome {
     }
 
     @AfterAll
-    void Finaliza() throws Exception {
+    void finaliza() {
         DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.SQLITE);
-        ClienteDAO DAO = factory.getClienteDAO();
+        ClienteDAO dao = factory.getClienteDAO();
         // Exclui os dados inseridos
-        DAO.excluir(cliente);
+        dao.excluir(cliente);
 
         factory = DAOFactory.getDAOFactory(DAOFactory.HASHMAP);
-        DAO = factory.getClienteDAO();
+        dao = factory.getClienteDAO();
         // Exclui os dados inseridos
-        DAO.excluir(cliente);
+        dao.excluir(cliente);
 
         factory = DAOFactory.getDAOFactory(DAOFactory.RAF);
-        DAO = factory.getClienteDAO();
+        dao = factory.getClienteDAO();
         // Exclui os dados inseridos
-        DAO.excluir(cliente);
+        dao.excluir(cliente);
 
         cliente = null;
     }

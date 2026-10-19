@@ -46,11 +46,11 @@ class TestDAOConsulta {
     @Test
     void testConsulta1() {
         DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.SQLITE);
-        ClienteDAO DAO = factory.getClienteDAO();
+        ClienteDAO dao = factory.getClienteDAO();
         // Insere os dados da consulta
-        DAO.inserir(cliente);
+        dao.inserir(cliente);
         //Consulta
-        List lista = DAO.getLista();
+        List lista = dao.getLista();
         assertNotEquals(0, lista.size());
     }
 
@@ -60,11 +60,11 @@ class TestDAOConsulta {
     @Test
     void testConsulta2() {
         DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.HASHMAP);
-        ClienteDAO DAO = factory.getClienteDAO();
+        ClienteDAO dao = factory.getClienteDAO();
         // Insere os dados da consulta
-        DAO.inserir(cliente);
+        dao.inserir(cliente);
         //Consulta
-        List lista = DAO.getLista();
+        List lista = dao.getLista();
         assertNotEquals(0, lista.size());
     }
 
@@ -74,11 +74,11 @@ class TestDAOConsulta {
     @Test
     void testConsulta3() {
         DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.RAF);
-        ClienteDAO DAO = factory.getClienteDAO();
+        ClienteDAO dao = factory.getClienteDAO();
         // Insere os dados da consulta
-        DAO.inserir(cliente);
+        dao.inserir(cliente);
         //Consulta
-        List lista = DAO.getLista();
+        List lista = dao.getLista();
         assertNotEquals(0, lista.size());
     }
 
@@ -125,21 +125,21 @@ class TestDAOConsulta {
      * @throws java.lang.Exception
      */
     @AfterAll
-    void Finaliza() throws Exception {
+    void finaliza() {
         DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.SQLITE);
-        ClienteDAO DAO = factory.getClienteDAO();
+        ClienteDAO dao = factory.getClienteDAO();
         // Exclui os dados inseridos
-        DAO.excluir(cliente);
+        dao.excluir(cliente);
 
         factory = DAOFactory.getDAOFactory(DAOFactory.HASHMAP);
-        DAO = factory.getClienteDAO();
+        dao = factory.getClienteDAO();
         // Exclui os dados inseridos
-        DAO.excluir(cliente);
+        dao.excluir(cliente);
 
         factory = DAOFactory.getDAOFactory(DAOFactory.RAF);
-        DAO = factory.getClienteDAO();
+        dao = factory.getClienteDAO();
         // Exclui os dados inseridos
-        DAO.excluir(cliente);
+        dao.excluir(cliente);
 
         cliente = null;
     }

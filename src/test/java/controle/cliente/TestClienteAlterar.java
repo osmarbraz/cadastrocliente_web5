@@ -29,11 +29,11 @@ class TestClienteAlterar {
         "131, Teste, 11111111111, 131, CPF Inválido, 111, CPF Inv&aacute;lido!",
         "131, Teste, 11111111111, 132, Cliente Não Existente, 11111111111, Altera&ccedil;&atilde;o n&atilde;o realizada."        
     })
-    void testAlteracaoParametrizado(String clienteId, String nome, String CPF, String clienteIdAlterado, String nomeAlterado, String CPFAlterado, String resultadoEsperado) throws IOException, ServletException {
+    void testAlteracaoParametrizado(String clienteId, String nome, String cpf, String clienteIdAlterado, String nomeAlterado, String cpfAlterado, String resultadoEsperado) throws IOException {
                 
        // Dados da alteração        
-        Cliente cliente = new Cliente(clienteId, nome, CPF);
-        Cliente clienteAlterado = new Cliente(clienteIdAlterado, nomeAlterado, CPFAlterado);
+        Cliente cliente = new Cliente(clienteId, nome, cpf);
+        Cliente clienteAlterado = new Cliente(clienteIdAlterado, nomeAlterado, cpfAlterado);
         // Insere os dados para serem alterados
         cliente.inserir();
 

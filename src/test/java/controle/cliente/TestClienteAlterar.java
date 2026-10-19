@@ -1,7 +1,6 @@
 package controle.cliente;
 
 import java.io.IOException;
-import javax.servlet.ServletException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import javax.servlet.ServletContext;

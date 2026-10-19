@@ -138,7 +138,7 @@ class TestDAOInclusao {
     }
 
     @Test
-    public void testInserirComSucessoSQLiteClienteDAO() throws SQLException{
+    void testInserirComSucessoSQLiteClienteDAO() throws SQLException{
         SQLiteClienteDAO dao = spy(new SQLiteClienteDAO());
         Connection conexao = mock(Connection.class);
         Statement statement = mock(Statement.class);
@@ -152,7 +152,7 @@ class TestDAOInclusao {
     }
 
     @Test
-    public void testInserirQuandoExecuteUpdateRetornaZeroSQLiteClienteDAO() throws SQLException{
+    void testInserirQuandoExecuteUpdateRetornaZeroSQLiteClienteDAO() throws SQLException{
         // Variáveis
         SQLiteClienteDAO dao = spy(new SQLiteClienteDAO());
         Connection conexao = mock(Connection.class);
@@ -167,13 +167,13 @@ class TestDAOInclusao {
     }
 
     @Test
-    public void testInserirComObjetoNuloSQLiteClienteDAO() {
+    void testInserirComObjetoNuloSQLiteClienteDAO() {
         SQLiteClienteDAO dao = spy(new SQLiteClienteDAO());
         assertFalse(dao.inserir(null));
     }
 
     @Test
-    public void testInserirComErroSQL() throws SQLException {
+    void testInserirComErroSQL() throws SQLException {
         // Variáveis
         SQLiteClienteDAO dao = spy(new SQLiteClienteDAO());
         Connection conexao = mock(Connection.class);

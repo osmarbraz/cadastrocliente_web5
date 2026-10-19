@@ -13,8 +13,8 @@
             <input type=text size="100" id="Nome" name="Nome"> <br><br>
             <label for="CPF">CPF (somente números):</label>
             <input type="text" id="CPF" name="CPF"> <br><br>
-            <input type="reset" id="Limpar" value="Limpar">
-            <input type="submit" id="Alterar" name="Alterar" value="Alterar"> <br>
+            <button type="reset" id="Limpar">Limpar</button>
+            <button type="submit" id="Alterar" name="Alterar">Alterar</button>
         </form>
         <br>
         <a href="<%=request.getContextPath()%>/menu.jsp"> Menu </a>

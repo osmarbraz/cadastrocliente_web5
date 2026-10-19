@@ -29,7 +29,7 @@ class TestRAFClienteDAO {
      */
     @Test
     void testInclusaoRAF() {
-        String NOMEARQUIVO = "cliente.dat";
+        String nomeArquivo = "cliente.dat";
 
         Cliente cliente = new Cliente("-1", "Cliente Existente", "11111111111");
 
@@ -41,7 +41,7 @@ class TestRAFClienteDAO {
         }
 
         //Apaga o arquivo para gerar exceção
-        File file = new File(NOMEARQUIVO);
+        File file = new File(nomeArquivo);
         file.delete();
 
         assertFalse(rafClienteDAO.inserir(cliente));
@@ -52,7 +52,7 @@ class TestRAFClienteDAO {
      */
     @Test
     void testExclusaoRAF() {
-        String NOMEARQUIVO = "cliente.dat";
+        String nomeArquivo = "cliente.dat";
 
         Cliente cliente = new Cliente("-1", "Cliente Existente", "11111111111");
 
@@ -64,7 +64,7 @@ class TestRAFClienteDAO {
         }
 
         //Apaga o arquivo para gerar exceção
-        File file = new File(NOMEARQUIVO);
+        File file = new File(nomeArquivo);
         file.delete();
 
         assertEquals(0, rafClienteDAO.excluir(cliente));
@@ -75,7 +75,7 @@ class TestRAFClienteDAO {
      */
     @Test
     void testExclusaoRegistoRAF() {
-        String NOMEARQUIVO = "cliente.dat";
+        String nomeArquivo = "cliente.dat";
 
         RAFRegistroCliente registro = new RAFRegistroCliente();
 
@@ -89,7 +89,7 @@ class TestRAFClienteDAO {
         }
 
         //Apaga o arquivo para gerar exceção
-        File file = new File(NOMEARQUIVO);
+        File file = new File(nomeArquivo);
         file.delete();
 
         assertEquals(0, rafClienteDAO.excluirRegistro(registro, pos));
@@ -100,7 +100,7 @@ class TestRAFClienteDAO {
      */
     @Test
     void testAlteracaRAF() {
-        String NOMEARQUIVO = "cliente.dat";
+        String nomeArquivo = "cliente.dat";
 
         Cliente cliente = new Cliente("-1", "Cliente Existente", "11111111111");
 
@@ -112,7 +112,7 @@ class TestRAFClienteDAO {
         }
 
         //Apaga o arquivo para gerar exceção
-        File file = new File(NOMEARQUIVO);
+        File file = new File(nomeArquivo);
         file.delete();
 
         assertEquals(0, rafClienteDAO.alterar(cliente));
@@ -123,7 +123,7 @@ class TestRAFClienteDAO {
      */
     @Test
     void testAlteracaRegistoRAF() {
-        String NOMEARQUIVO = "cliente.dat";
+        String nomeArquivo = "cliente.dat";
 
         Cliente cliente = new Cliente("-1", "Cliente Existente", "11111111111");
         RAFRegistroCliente registro = new RAFRegistroCliente();
@@ -138,7 +138,7 @@ class TestRAFClienteDAO {
         }
 
         //Apaga o arquivo para gerar exceção
-        File file = new File(NOMEARQUIVO);
+        File file = new File(nomeArquivo);
         file.delete();
 
         assertEquals(0, rafClienteDAO.alterarRegistro(registro, cliente, pos));
@@ -149,7 +149,7 @@ class TestRAFClienteDAO {
      */
     @Test
     void testGetListaRAF() {
-        String NOMEARQUIVO = "cliente.dat";
+        String nomeArquivo = "cliente.dat";
 
         RAFClienteDAO rafClienteDAO = new RAFClienteDAO();
         try {
@@ -159,7 +159,7 @@ class TestRAFClienteDAO {
         }
 
         //Apaga o arquivo para gerar exceção
-        File file = new File(NOMEARQUIVO);
+        File file = new File(nomeArquivo);
         file.delete();
 
         //Consulta
@@ -178,7 +178,7 @@ class TestRAFClienteDAO {
     void testAplicarFiltrParametrizadoRAF(String clienteId, String nome, String CPF) {
         
         Cliente cliente = new Cliente(clienteId, nome, CPF);
-        String NOMEARQUIVO = "cliente.dat";
+        String nomeArquivo = "cliente.dat";
 
         RAFClienteDAO rafClienteDAO = new RAFClienteDAO();
         try {
@@ -188,7 +188,7 @@ class TestRAFClienteDAO {
         }
 
         //Apaga o arquivo para gerar exceção
-        File file = new File(NOMEARQUIVO);
+        File file = new File(nomeArquivo);
         file.delete();
 
         //Consulta

@@ -43,7 +43,7 @@ class TestDAOExclusao {
     @Test
     void testExclusao1() {
         DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.SQLITE);
-        ClienteDAO dao = factory.getClienteDAO();;
+        ClienteDAO dao = factory.getClienteDAO();
         dao.inserir(cliente);
         List lista = dao.aplicarFiltro(cliente);
 
